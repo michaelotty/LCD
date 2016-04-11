@@ -8,22 +8,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _RB5 `Vb ~T0 @X0 0 e@53 ]
 "36 lcd.h
 [v _Lcd_Init `(v ~T0 @X0 0 ef ]
-"20 main.c
-[v _rand `(i ~T0 @X0 0 ef ]
-"166 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic16f84a.h
-[s S7 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S7 . RA0 RA1 RA2 RA3 RA4 ]
-"165
-[u S6 `S7 1 ]
-[n S6 . . ]
-"174
-[v _PORTAbits `VS6 ~T0 @X0 0 e@5 ]
-"30 lcd.h
+"30
 [v _Lcd_Clear `(v ~T0 @X0 0 ef ]
 "33
 [v _Lcd_Set_Cursor `(v ~T0 @X0 0 ef2`uc`uc ]
-"45
-[v _Lcd_Write_Int `(v ~T0 @X0 0 ef1`ui ]
+"42
+[v _Lcd_Write_String `(v ~T0 @X0 0 ef1`*uc ]
+"47
+[v _Lcd_Shift_Right `(v ~T0 @X0 0 ef ]
 "1 main.c
 [p x FOSC=XT ]
 "2
@@ -320,42 +312,64 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 19: Lcd_Init();
 "19
 [e ( _Lcd_Init ..  ]
-"20
-[v _num `i ~T0 @X0 1 a ]
-[; ;main.c: 20: int num = 1 + rand() % 6;
-[e = _num + -> 1 `i % ( _rand ..  -> 6 `i ]
-[; ;main.c: 22: while (1) {
+"21
+[v _start `*uc ~T0 @X0 1 a ]
+[; ;main.c: 21: char *start = "Push bu";
+[e = _start -> :s 1C `*uc ]
 "22
+[v _end `*uc ~T0 @X0 1 a ]
+[; ;main.c: 22: char *end = "tton";
+[e = _end -> :s 2C `*uc ]
+[; ;main.c: 24: while (1) {
+"24
 [e :U 26 ]
 {
-[; ;main.c: 24: if(PORTAbits.RA3) {
-"24
-[e $ ! != -> . . _PORTAbits 0 3 `i -> -> -> 0 `i `Vuc `i 28  ]
-{
-[; ;main.c: 25: num = 1 + rand() % 6;
+[; ;main.c: 25: Lcd_Clear();
 "25
-[e = _num + -> 1 `i % ( _rand ..  -> 6 `i ]
-"26
-}
-[e :U 28 ]
-[; ;main.c: 26: }
-[; ;main.c: 27: Lcd_Clear();
-"27
 [e ( _Lcd_Clear ..  ]
-[; ;main.c: 28: Lcd_Set_Cursor(1, 1);
-"28
+[; ;main.c: 26: Lcd_Set_Cursor(1, 1);
+"26
 [e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
-[; ;main.c: 30: Lcd_Write_Int(num);
-"30
-[e ( _Lcd_Write_Int (1 -> _num `ui ]
-"32
+[; ;main.c: 27: Lcd_Write_String(end);
+"27
+[e ( _Lcd_Write_String (1 _end ]
+[; ;main.c: 33: Lcd_Shift_Right();
+"33
+[e ( _Lcd_Shift_Right ..  ]
+[; ;main.c: 34: Lcd_Shift_Right();
+"34
+[e ( _Lcd_Shift_Right ..  ]
+[; ;main.c: 35: Lcd_Shift_Right();
+"35
+[e ( _Lcd_Shift_Right ..  ]
+[; ;main.c: 36: Lcd_Shift_Right();
+"36
+[e ( _Lcd_Shift_Right ..  ]
+[; ;main.c: 37: Lcd_Shift_Right();
+"37
+[e ( _Lcd_Shift_Right ..  ]
+[; ;main.c: 38: Lcd_Shift_Right();
+"38
+[e ( _Lcd_Shift_Right ..  ]
+[; ;main.c: 39: Lcd_Shift_Right();
+"39
+[e ( _Lcd_Shift_Right ..  ]
+[; ;main.c: 40: Lcd_Shift_Right();
+"40
+[e ( _Lcd_Shift_Right ..  ]
+[; ;main.c: 41: Lcd_Write_String(start);
+"41
+[e ( _Lcd_Write_String (1 _start ]
+"46
 }
 [e :U 25 ]
-"22
+"24
 [e $U 26  ]
 [e :U 27 ]
-[; ;main.c: 32: }
-[; ;main.c: 33: }
-"33
+[; ;main.c: 46: }
+[; ;main.c: 47: }
+"47
 [e :UE 24 ]
 }
+[a 1C 80 117 115 104 32 98 117 0 ]
+[a 2C 116 116 111 110 0 ]

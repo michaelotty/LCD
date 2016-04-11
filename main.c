@@ -17,17 +17,31 @@ void main() {
     RW = 0;
 
     Lcd_Init();
-    int num = 1 + rand() % 6;
+//    int num = 1 + rand() % 6;
+    char *start = "Push bu";
+    char *end = "tton";
     
     while (1) {
-        
-        if(BUTTON) {
-            num = 1 + rand() % 6;
-        }
         Lcd_Clear();
         Lcd_Set_Cursor(1, 1);
-//            
-        Lcd_Write_Int(num);
+        Lcd_Write_String(end);
+//        if(BUTTON) {
+//            num = 1 + rand() % 6;
+//        }
+//        Lcd_Clear();
+        //Lcd_Set_Cursor(1, 1);
+        Lcd_Shift_Right();
+        Lcd_Shift_Right();
+        Lcd_Shift_Right();
+        Lcd_Shift_Right();
+        Lcd_Shift_Right();
+        Lcd_Shift_Right();
+        Lcd_Shift_Right();
+        Lcd_Shift_Right();
+        Lcd_Write_String(start);
+        //Lcd_Write_Int(num);
+        
+        
         
     }
 }
