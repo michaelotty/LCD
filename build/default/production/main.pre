@@ -417,23 +417,20 @@ extern __bit __timeout;
 
 # 12 "main.c"
 void main() {
-unsigned int counter = 0;
-TRISB = 0x00;
 
+TRISB = 0x00;
+char *name = "MikeLaur";
 
 RB5 = 0;
 
 Lcd_Init();
 
 while(1) {
-
+Lcd_Clear();
 Lcd_Set_Cursor(1,1);
 
+Lcd_Write_String(name);
 
-
-Lcd_Write_Int(counter);
-_delay((unsigned long)((1000)*(4000000/4000.0)));
-counter++;
+# 36
 }
-return;
 }

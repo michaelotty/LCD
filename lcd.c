@@ -29,11 +29,14 @@ void Lcd_Port(char a)
 // Send a command to the LCD
 void Lcd_Cmd(char a)
 {
-	RS = 0;             // => RS = 0
+	// Select the command register
+    RS = 0;
 	Lcd_Port(a);
-	EN  = 1;             // => E = 1
-        __delay_ms(4);
-        EN  = 0;             // => E = 0
+    
+    // Strobe data in
+	EN  = 1;             
+    __delay_ms(4);
+    EN  = 0;             
 }
 
 // Clear the LCD
