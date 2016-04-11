@@ -5,33 +5,29 @@
 
 #define _XTAL_FREQ  4000000
 
+#define BUTTON PORTAbits.RA3
+
 #include "lcd.h"
 #include <xc.h>
 
-
 void main() {
-//    unsigned int counter = 0;
+    TRISA = 0xFF;
     TRISB = 0x00;
-    char *name = "MikeLaur";
-    
+
     RW = 0;
-    
+
     Lcd_Init();
+    int num = 1 + rand() % 6;
     
-    while(1) {
+    while (1) {
+        
+        if(BUTTON) {
+            num = 1 + rand() % 6;
+        }
         Lcd_Clear();
-        Lcd_Set_Cursor(1,1);
+        Lcd_Set_Cursor(1, 1);
+//            
+        Lcd_Write_Int(num);
         
-        Lcd_Write_String(name);
-        
-//        Lcd_Write_Int(counter);
-//        __delay_ms(10);
-//        counter++;
-//        RW = 0;
-//        EN = 1;
-//        D5 = 1;
-//        __delay_ms(500);
-//        RW = 1;
-//        __delay_ms(500);
     }
 }
