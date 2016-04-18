@@ -415,36 +415,40 @@ extern unsigned char __resetbits;
 extern __bit __powerdown;
 extern __bit __timeout;
 
-# 13 "main.c"
+# 31 "main.c"
 void main() {
 TRISA = 0xFF;
 TRISB = 0x00;
 
 RB5 = 0;
 
-Lcd_Init();
+Lcd_Init();;
 
-char *start = "Push bu";
-char *end = "tton";
+char *Instruction = "Push button to generate a random number \0";
+char *Instruction2 = "ton to generate a random number Push but\0";
 
-while (1) {
+Lcd_Set_Cursor(1,1);
+Lcd_Write_String(Instruction);
+Lcd_Set_Cursor(2,1);
+Lcd_Write_String(Instruction2);
+
+int run = 1;
+
+while (run)
+{
+_delay((unsigned long)((500)*(4000000/4000.0)));
+Lcd_Shift_Left();
+
+if(PORTAbits.RA3)
+{
+run = 0;
+int num = 1 + rand() % 6;
 Lcd_Clear();
-Lcd_Set_Cursor(1, 1);
-Lcd_Write_String(end);
-
-# 33
-Lcd_Shift_Right();
-Lcd_Shift_Right();
-Lcd_Shift_Right();
-Lcd_Shift_Right();
-Lcd_Shift_Right();
-Lcd_Shift_Right();
-Lcd_Shift_Right();
-Lcd_Shift_Right();
-Lcd_Write_String(start);
-
-
-
-
+Lcd_Write_Int(num);
+_delay((unsigned long)((2000)*(4000000/4000.0)));
+Lcd_Clear();
 }
 }
+
+}
+

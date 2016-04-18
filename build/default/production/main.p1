@@ -8,14 +8,30 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _RB5 `Vb ~T0 @X0 0 e@53 ]
 "36 lcd.h
 [v _Lcd_Init `(v ~T0 @X0 0 ef ]
-"30
-[v _Lcd_Clear `(v ~T0 @X0 0 ef ]
 "33
 [v _Lcd_Set_Cursor `(v ~T0 @X0 0 ef2`uc`uc ]
 "42
 [v _Lcd_Write_String `(v ~T0 @X0 0 ef1`*uc ]
-"47
-[v _Lcd_Shift_Right `(v ~T0 @X0 0 ef ]
+[v F295 `(v ~T0 @X0 1 tf1`ul ]
+"150 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic.h
+[v __delay `JF295 ~T0 @X0 0 e ]
+[p i __delay ]
+"49 lcd.h
+[v _Lcd_Shift_Left `(v ~T0 @X0 0 ef ]
+"166 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic16f84a.h
+[s S7 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S7 . RA0 RA1 RA2 RA3 RA4 ]
+"165
+[u S6 `S7 1 ]
+[n S6 . . ]
+"174
+[v _PORTAbits `VS6 ~T0 @X0 0 e@5 ]
+"57 main.c
+[v _rand `(i ~T0 @X0 0 ef ]
+"30 lcd.h
+[v _Lcd_Clear `(v ~T0 @X0 0 ef ]
+"45
+[v _Lcd_Write_Int `(v ~T0 @X0 0 ef1`ui ]
 "1 main.c
 [p x FOSC=XT ]
 "2
@@ -294,82 +310,100 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 184: extern unsigned char __resetbits;
 [; ;pic.h: 185: extern __bit __powerdown;
 [; ;pic.h: 186: extern __bit __timeout;
-"13 main.c
+"31 main.c
 [v _main `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 13: void main() {
+[; ;main.c: 31: void main() {
 [e :U _main ]
 [f ]
-[; ;main.c: 14: TRISA = 0xFF;
-"14
+[; ;main.c: 32: TRISA = 0xFF;
+"32
 [e = _TRISA -> -> 255 `i `uc ]
-[; ;main.c: 15: TRISB = 0x00;
-"15
-[e = _TRISB -> -> 0 `i `uc ]
-[; ;main.c: 17: RB5 = 0;
-"17
-[e = _RB5 -> -> 0 `i `b ]
-[; ;main.c: 19: Lcd_Init();
-"19
-[e ( _Lcd_Init ..  ]
-"21
-[v _start `*uc ~T0 @X0 1 a ]
-[; ;main.c: 21: char *start = "Push bu";
-[e = _start -> :s 1C `*uc ]
-"22
-[v _end `*uc ~T0 @X0 1 a ]
-[; ;main.c: 22: char *end = "tton";
-[e = _end -> :s 2C `*uc ]
-[; ;main.c: 24: while (1) {
-"24
-[e :U 26 ]
-{
-[; ;main.c: 25: Lcd_Clear();
-"25
-[e ( _Lcd_Clear ..  ]
-[; ;main.c: 26: Lcd_Set_Cursor(1, 1);
-"26
-[e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
-[; ;main.c: 27: Lcd_Write_String(end);
-"27
-[e ( _Lcd_Write_String (1 _end ]
-[; ;main.c: 33: Lcd_Shift_Right();
+[; ;main.c: 33: TRISB = 0x00;
 "33
-[e ( _Lcd_Shift_Right ..  ]
-[; ;main.c: 34: Lcd_Shift_Right();
-"34
-[e ( _Lcd_Shift_Right ..  ]
-[; ;main.c: 35: Lcd_Shift_Right();
+[e = _TRISB -> -> 0 `i `uc ]
+[; ;main.c: 35: RB5 = 0;
 "35
-[e ( _Lcd_Shift_Right ..  ]
-[; ;main.c: 36: Lcd_Shift_Right();
-"36
-[e ( _Lcd_Shift_Right ..  ]
-[; ;main.c: 37: Lcd_Shift_Right();
+[e = _RB5 -> -> 0 `i `b ]
+[; ;main.c: 37: Lcd_Init();;
 "37
-[e ( _Lcd_Shift_Right ..  ]
-[; ;main.c: 38: Lcd_Shift_Right();
-"38
-[e ( _Lcd_Shift_Right ..  ]
-[; ;main.c: 39: Lcd_Shift_Right();
+[e ( _Lcd_Init ..  ]
 "39
-[e ( _Lcd_Shift_Right ..  ]
-[; ;main.c: 40: Lcd_Shift_Right();
+[v _Instruction `*uc ~T0 @X0 1 a ]
+[; ;main.c: 39: char *Instruction = "Push button to generate a random number \0";
+[e = _Instruction -> :s 1C `*uc ]
 "40
-[e ( _Lcd_Shift_Right ..  ]
-[; ;main.c: 41: Lcd_Write_String(start);
-"41
-[e ( _Lcd_Write_String (1 _start ]
-"46
+[v _Instruction2 `*uc ~T0 @X0 1 a ]
+[; ;main.c: 40: char *Instruction2 = "ton to generate a random number Push but\0";
+[e = _Instruction2 -> :s 2C `*uc ]
+[; ;main.c: 42: Lcd_Set_Cursor(1,1);
+"42
+[e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
+[; ;main.c: 43: Lcd_Write_String(Instruction);
+"43
+[e ( _Lcd_Write_String (1 _Instruction ]
+[; ;main.c: 44: Lcd_Set_Cursor(2,1);
+"44
+[e ( _Lcd_Set_Cursor (2 , -> -> 2 `i `uc -> -> 1 `i `uc ]
+[; ;main.c: 45: Lcd_Write_String(Instruction2);
+"45
+[e ( _Lcd_Write_String (1 _Instruction2 ]
+"47
+[v _run `i ~T0 @X0 1 a ]
+[; ;main.c: 47: int run = 1;
+[e = _run -> 1 `i ]
+[; ;main.c: 49: while (run)
+"49
+[e $U 25  ]
+[e :U 26 ]
+[; ;main.c: 50: {
+"50
+{
+[; ;main.c: 51: _delay((unsigned long)((500)*(4000000/4000.0)));
+"51
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[; ;main.c: 52: Lcd_Shift_Left();
+"52
+[e ( _Lcd_Shift_Left ..  ]
+[; ;main.c: 54: if(PORTAbits.RA3)
+"54
+[e $ ! != -> . . _PORTAbits 0 3 `i -> -> -> 0 `i `Vuc `i 28  ]
+[; ;main.c: 55: {
+"55
+{
+[; ;main.c: 56: run = 0;
+"56
+[e = _run -> 0 `i ]
+"57
+[v _num `i ~T0 @X0 1 a ]
+[; ;main.c: 57: int num = 1 + rand() % 6;
+[e = _num + -> 1 `i % ( _rand ..  -> 6 `i ]
+[; ;main.c: 58: Lcd_Clear();
+"58
+[e ( _Lcd_Clear ..  ]
+[; ;main.c: 59: Lcd_Write_Int(num);
+"59
+[e ( _Lcd_Write_Int (1 -> _num `ui ]
+[; ;main.c: 60: _delay((unsigned long)((2000)*(4000000/4000.0)));
+"60
+[e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[; ;main.c: 61: Lcd_Clear();
+"61
+[e ( _Lcd_Clear ..  ]
+"62
+}
+[e :U 28 ]
+"63
 }
 [e :U 25 ]
-"24
-[e $U 26  ]
+"49
+[e $ != _run -> 0 `i 26  ]
 [e :U 27 ]
-[; ;main.c: 46: }
-[; ;main.c: 47: }
-"47
+[; ;main.c: 62: }
+[; ;main.c: 63: }
+[; ;main.c: 65: }
+"65
 [e :UE 24 ]
 }
-[a 1C 80 117 115 104 32 98 117 0 ]
-[a 2C 116 116 111 110 0 ]
+[a 2C 116 111 110 32 116 111 32 103 101 110 101 114 97 116 101 32 97 32 114 97 110 100 111 109 32 110 117 109 98 101 114 32 80 117 115 104 32 98 117 116 0 0 ]
+[a 1C 80 117 115 104 32 98 117 116 116 111 110 32 116 111 32 103 101 110 101 114 97 116 101 32 97 32 114 97 110 100 111 109 32 110 117 109 98 101 114 32 0 0 ]
